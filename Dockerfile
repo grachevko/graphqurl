@@ -1,4 +1,11 @@
-FROM node:19.0.0-alpine3.16
+FROM node:23.4.0-alpine3.21
 
-RUN set -ex \
-    && npm install -g graphqurl@v1.0.1
+RUN set -ex && \
+    apk update && apk upgrade && \
+    apk add \
+      curl \
+      git \
+      jq \
+      yq \
+    && rm -rf /var/cache/apk/* \
+    && npm install -g graphqurl@v2.0.0
